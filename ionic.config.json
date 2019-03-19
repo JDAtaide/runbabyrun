@@ -1,5 +1,7 @@
 {
-  "name": "RunnerX2",
-  "integrations": {},
+  "name": "Run baby run",
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

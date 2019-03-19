@@ -1,9 +1,80 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Tab Two
+      Corridas
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-card class="">
+  <ion-list>
+    <!-- <ion-item>
+          <p>Best run</p>
+        </ion-item> -->
+
+        
+    <ion-item>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="3">
+            <ion-icon name="trophy" style="font-size:40px"></ion-icon>
+          </ion-col>
+          <ion-col size="5">
+            Best run
+            <p style="font-weight: bold;" >{{fastestRunTime}} </p>
+          </ion-col>
+          <ion-col size="4">
+            <p >{{fastestRunDate | date: 'dd/MM/yyyy'}}</p>
+            <!-- <p>{{fastestRunDate}}</p> -->
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
+</ion-card>
+
+
+
+<ion-content padding>
+    <ion-refresher (ionrefresh)="doRefresh($event);">
+        <ion-refresher-content>
+            refresh
+            <p style="font-weight: bold;" >{{fastestRunTime}} </p>
+        </ion-refresher-content>
+      
+        </ion-refresher>
+
+  <!-- <ion-button expand="block" (click)="SaveRun();"> Create Usuário </ion-button> -->
+  <ion-button #myBtn class="myBtn" expand="block" (click)="GetCorridas();">
+    <ion-icon name="sync"></ion-icon>
+    Reload
+  </ion-button>
+
+  <ion-list>
+    <ion-item-sliding *ngFor="let corrida of ArrayCorrida">
+      <ion-item>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="3">
+              <ion-avatar>
+                <!-- <ion-icon name="timer"></ion-icon> -->
+                <img src="/assets/images/imgRun.png" style="width:45px; height:45px; font-size: 20px">
+              </ion-avatar>
+            </ion-col>
+            <ion-col size="5">
+              <p style="font-weight: bold;">{{corrida.totalTime}} </p>
+            </ion-col>
+            <ion-col size="4">
+              <p>{{corrida.runDate | date: 'dd/MM/yyyy'}}</p>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+      <ion-item-options side="end">
+          <button ion-button style="background-color:danger; color:#dc3545; width:70px; font-size:16px" (click)="PromtDelete(corrida.id)">Delete</button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+
+</ion-content>
