@@ -20,13 +20,16 @@
       </ion-row>
     </ion-card-header>
 
-    <ion-card-header>
-      <p id="faseType">{{faseMsg}}</p>
+    <ion-card-header [hidden]="!runInProgress">
+      <!-- <p id="faseType">{{faseMsg}}</p> -->
+      <h1 id="runTimer">{{runningTime}}</h1>
     </ion-card-header>
     <ion-card-content [hidden]="!runInProgress">
-      <h1 id="runTimer">{{runningTime}}</h1>
-      <br />
+      
+    
       <p>elapsed time: {{totalTime}}</p>
+      <br />
+      <p id="faseType">{{faseMsg}}</p>
     </ion-card-content>
   </ion-card>
 

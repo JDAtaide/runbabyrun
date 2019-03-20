@@ -20,9 +20,7 @@ export class DatabaseService {
 
         db.executeSql('CREATE TABLE IF NOT EXISTS corridas (id  INTEGER PRIMARY KEY AUTOINCREMENT, runDate INTEGER, totalTime TEXT)', []);
         this.isOpen = true;
-        //  console.log('hello jebus :)');
       }).catch((error) => {
-        // console.log('bye jebus :)');
         console.log(error);
       })
     }
@@ -90,6 +88,36 @@ export class DatabaseService {
         console.log(highScore);
 
         resolve(highScore);
+      }, (error) => {
+        reject(error);
+      })
+    })
+  }
+
+  
+  ElimiarDT() {
+    return new Promise((resolve, reject) => {
+
+      alert("trigger2");
+      let sql = 'DROP TABLE IF EXISTS data.db;';
+      this.db.executeSql(sql, []).then((data) => {
+
+        alert("database deleted");
+        
+        resolve(data);
+      }, (error) => {
+        reject(error);
+      })
+    })
+  }
+
+
+  RecreateDT() {
+    return new Promise((resolve, reject) => {
+
+      let sql = 'CREATE TABLE IF NOT EXISTS corridas (id  INTEGER PRIMARY KEY AUTOINCREMENT, runDate INTEGER, totalTime TEXT)';
+      this.db.executeSql(sql, []).then((data) => {
+        resolve(data);
       }, (error) => {
         reject(error);
       })
